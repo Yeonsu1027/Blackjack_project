@@ -1,6 +1,6 @@
 package model;
 
-public class BlackjackDto {
+public class CardDto {
 	
 	private String cardDeck;		// 52장의 숫자카드 + 패턴카드
 	private String denomination;		// 2 ~ 10 4쌍

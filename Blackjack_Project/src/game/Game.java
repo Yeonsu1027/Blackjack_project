@@ -3,21 +3,29 @@ package game;
 import java.util.List;
 
 import Service.CardService;
-import model.BlackjackDto;
+import model.CardDto;
 
 public class Game {
 	public static void main(String[] args) {
 		
-		BlackjackDto black = new BlackjackDto();
-		CardService service = new CardService();
+		CardService card = new CardService();
+		CardDto black = new CardDto();
 
-		service.MakeDeck();
-		List<BlackjackDto> deckList = service.getDeck();
+		card.MakeDeck();
+		List<CardDto> deckList = card.getDeck();
 
-		for (BlackjackDto dto : deckList) {
-			System.out.println(dto);
-		}
+//		for (BlackjackDto dto : deckList) {
+//			System.out.println(dto);
+//		}
+		System.out.println(card.getRandomCard());
+		
+		
+		
+		
+		
+		
+		
 
-	}
+	}//end main
 
 }
