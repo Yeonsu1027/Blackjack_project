@@ -1,4 +1,0 @@
-INDEX VERSION 1.134+C:\Users\KMS505106\Documents\workspace\my_project_workspace\Blackjack_project\.metadata\.plugins\org.eclipse.jdt.core
-1546377914.index
-4279168762.index
-1865797976.index
