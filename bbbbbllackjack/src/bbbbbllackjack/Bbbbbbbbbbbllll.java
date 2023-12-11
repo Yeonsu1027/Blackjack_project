@@ -73,13 +73,48 @@ public class Bbbbbbbbbbbllll {
 		//int cardnum = (int) (Math.random() * 52); //0~51, 총52장의 카드
 		
 		
+		String spentCard = null;  // 이미 뽑힌카드 둘곳
+		
+		
+		// 카드 무작위로 섞기
+		
+		String temp = null;
 		for ( int i = carddeck.length-1; i>0;i--) {
 			int j = (int) (Math.random() * 52);
-			String temp = carddeck[i];
-			carddeck[i] = carddeck[j];
-			carddeck[j] = temp;
+			temp = carddeck[j];
+		}
+			//carddeck[i] = carddeck[j];
+		//	carddeck[j] = temp;
+			
+			// 현재 랜덤카드 1장은 temp
+			// 뽑았 던 거 안나오게 하기
+//			if (spentCard == null || !temp.equals(spentCard)) {
+//				spentCard = temp;
+//				
+//			} else {
+//				continue; //뽑은거 나오면 다시뽑기
+		
+		//			}
+			
+		for ( int i = 0; i < carddeck.length; i++) {
+			String cCard = carddeck[i];
+			
+			if (cCard.equals(spentCard)) {
+				continue;
+			}
+			
+			
+			System.out.println("┌─────┐\t┌─────┐");
+			System.out.printf("│%3s  │\t│%3s  │\n",cCard,cCard);
+			System.out.println("└─────┘\t└─────┘");
+			
+			
 		}
 		
+		
+		
+			
+	//	}
 		
 		
 		// 플레이어와 딜러의 보유카드 목록 & 초기화
