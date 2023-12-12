@@ -1,4 +1,4 @@
-package bbbbbllackjack.utils;
+package utils;
 
 public class Line {
 	

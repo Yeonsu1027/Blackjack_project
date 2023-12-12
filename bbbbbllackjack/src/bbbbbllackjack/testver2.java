@@ -5,14 +5,21 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
-import bbbbbllackjack.utils.Line;
+import utils.Line;
 
-public class bbbbbbbbbbbbbbbbbbbbbbbbb {
+public class testver2 {
 
-	Scanner scan = null;
+	
 
 	public static void main(String[] args) {
-
+		
+		//HIT or STAND 입력받는용
+		Scanner scan = new Scanner(System.in);
+		
+		
+		// 점수계산용
+		int endScoreD =0;
+		int endScoreP =0;
 		
 		// ------------------------------------------------
 		//카드덱
@@ -31,7 +38,7 @@ public class bbbbbbbbbbbbbbbbbbbbbbbbb {
 
 		// ---------------------------------------------
 
-		String spentCard = null; // 이미 뽑힌카드 둘곳
+//		String spentCard = null; // 이미 뽑힌카드 둘곳  // 필요없는거같은데
 		
 		Random random = new Random();
 		for (int i = carddeck.length - 1; i > 0; i--) {
@@ -82,15 +89,6 @@ public class bbbbbbbbbbbbbbbbbbbbbbbbb {
 		playerscore += cardscore[3];
 		System.out.println("당신의 현재점수 : "+playerscore);
 		
-		//--------------------------------------------
-		
-		//****게임진행하는부분!!!!!****
-		
-//		Line.sLine(50);
-//		
-//		System.out.println("HIT or STOP ???");
-		
-		//---------------------------------------
 		
 		// 딜러카드는 어차피 안보여주니까 미리 정산해두고 목록만 마지막에 승패 나눌때 보여주면 될듯?
 		
@@ -99,15 +97,14 @@ public class bbbbbbbbbbbbbbbbbbbbbbbbb {
 		// 딜러카드 최대 장수 11장
 		// 점수 17점 미만 인경우 카드 추가로 받기
 		// 구현 성공! 딜러가 새로받는 카드의 시작번호는4, 점수번호도4
-		for( int d = 4; d < 13 ; d++) {  //11은 딜러가 가질 수 있는 최대 장수이고 딜러의 새카드는 처음 두장을뺀
+		for(int d = 4; d < 13 ; d++) {  //11은 딜러가 가질 수 있는 최대 장수이고 딜러의 새카드는 처음 두장을뺀
 											// 4번부터 새로 9장. 따라서 13미만까지. d는 4~12 까지만.
-			if(dealerscore<17) {
+			if(dealerscore < 17) {
 				dealerCard.add(carddeck[d]); 
 				dealerscore += cardscore[d]; 
 				}
-			
-		}
-		//test 딜러의 카드와 점수 출력 확인
+			}// end for
+		//test용 딜러의 카드와 점수 출력 확인
 		System.out.println(dealerscore);
 		System.out.println(dealerCard);
 		
@@ -118,9 +115,49 @@ public class bbbbbbbbbbbbbbbbbbbbbbbbb {
 			
 		}
 		
-		// 이부분은 승패 직전에 둬서 hit했을때 출력에 문제가 없도록해야함
+		// 이부분은 승패 직전에 둬서 hit 했을때 출력에 문제가 없도록해야함 //딜러의 카드와 점수를 따로 계산해둠
 		
 		//-------------------------------------------------------------------------------
+		//--------------------------------------------
+		
+		//****게임진행하는부분!!!!!****
+		
+		Line.sLine(50);
+		System.out.println("HIT or STOP ???");
+		
+		while(true) {
+			String str = scan.nextLine();
+			System.out.println("▶ 당신의 카드 ◀");
+			int palyerHit =0;// 히트 회수당 playerCard.get(0) get 요소추가
+			int palyerCardNum = 13; // 12까지 딜러꺼고 플레이어거 13부터시작
+			if(str.equals("HIT")) { 
+				
+				//for() {
+				//에 넣기 
+				//}
+				
+				playerCard.add(carddeck[palyerCardNum]); // 플레이어 카드에 한장추가
+				playerscore += cardscore[palyerCardNum]; // 점수도추가
+				
+				palyerCardNum++;  // hit 할 시마다 한 장씩추가
+				
+				playerCard.get(palyerHit);
+				
+				palyerHit++; //마찬가지로 보여줄 플레이어카드의 목록
+				
+			} else if (str.equals("STOP")) {
+				break;
+			}
+		}// end while 점수계산
+		
+		//---------------------------------------
+		
+		
+		
+		
+		
+		
+		
 		
 		// 카드를 아래로 출력이 아니라 옆에 계속두려면????
 		// 카드보여주는걸 method 로 새로만들어서 ... 3등분?
@@ -128,8 +165,39 @@ public class bbbbbbbbbbbbbbbbbbbbbbbbb {
 		
 		
 		
+		
+		
+		//하지만 카드 숫자의 합이 21을 초과하게 되는 순간 '버스트'라고 하며 
+		//딜러의 결과에 관계없이 플레이어가 패배한다. -나무위키
+		
+		//그럼 딜러는 계속 숨기고 있다가 플레이어의 stand(stop)시점에 ..
+		
+		//승리판별 "STOP을 입력했을시"-----------------------------------------------
+		// 가까운쪽이승리// 21-점수해서 숫자가 낮은쪽의 승리 
+		endScoreD = 21 - dealerscore;
+		endScoreP = 21 - playerscore;  //최종점이 낮으면 승리 //21넘으면 어차피 패배니
+		
+		if(playerscore>21) {
+			System.out.println("BUST! 21점이 넘었습니다");
+			System.out.println("당신의 패배입니다..");
+		}
+		//------------------------
+		if(dealerscore == playerscore ) {
+			System.out.println("비겼습니다!");
+		}
+		else if(endScoreD > endScoreP) { //숫자가 크면 진거
+			System.out.println("☆★당신이 블랙잭에서 승리했습니다!!★☆");
+		}else if (endScoreD < endScoreP) {
+			System.out.println("당신의 패배입니다..");
+		}
+		//--------------------------------------------------------
+		
+		
+		
 		//앞으로 해야할 것
-		//처음 나온 두장의 카드가 둘다 21일 경우
+		// 21 넘으면 자동패배
+				
+		
 				//플레이어에게 카드를 또 받을Hit 할 것인지 그만둘 STOP것인지
 		//선택할 수 있게 만든다
 		//stop시에 점수공개 및 승패판정
@@ -146,6 +214,15 @@ public class bbbbbbbbbbbbbbbbbbbbbbbbb {
 
 	}// end main
 	
+	public static void cardviewer1() {
+		System.out.print("┌─────┐");
+	}
+	public static void cardviewer2() {
+		System.out.printf("│%3s  │\n");//,매개변수
+	}
+	public static void cardviewer3() {
+		System.out.println("└─────┘");
+	}
 	
 	// 추가로 보여줄 카드출력용
 	public static void cardviewer() { //(매개변수=카드번호)

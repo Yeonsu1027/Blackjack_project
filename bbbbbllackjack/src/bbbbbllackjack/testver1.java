@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Bbbbbbbbbbbllll {
+public class testver1 {
 
 	// 카드는 총 52장, 점수 A는1 ,JQK는 10
 	// 카드 두장씩 받는다.

@@ -6,8 +6,8 @@ public class bbbblllllllaaaaa_test {
 		//점수랑 문양합치기?
 		String trump = "♣A,1";
 		int score =0;
-		
-		
+					
+				
 		score = Integer.valueOf(trump);
 		System.out.println(score);
 		
