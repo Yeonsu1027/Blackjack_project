@@ -71,13 +71,13 @@ public class testver4 {
 		//-----------------------------------------------------------
 		System.out.println("▶ 딜러의 카드 ◀");
 		System.out.println("┌─────┐┌─────┐");
-		System.out.printf("│%3s  ││%3s  │\n",dealerCard.get(0),dealerCard.get(1)); //테스트용 보여주기
-		//System.out.printf("│%3s  │\t│%3s  │\n",dealerCard.get(0),"??"); //실전용 안보여주기
+		//System.out.printf("│%3s  ││%3s  │\n",dealerCard.get(0),dealerCard.get(1)); //테스트용 보여주기
+		System.out.printf("│%3s  ││%3s  │\n",dealerCard.get(0),"??"); //실전용 안보여주기
 		System.out.println("└─────┘└─────┘");
 		dealerscore = cardscore[0]; //카드번호에 맞는 점수 주기
 		dealerscore += cardscore[1];
-	//	System.out.println("딜러의 현재점수 : "+"???"); //실전용 안보여주기
-		System.out.println("딜러의 현재점수 : "+dealerscore); //테스트용 점수보여주기
+		System.out.println("딜러의 현재점수 : "+"???"); //실전용 안보여주기
+		//System.out.println("딜러의 현재점수 : "+dealerscore); //테스트용 점수보여주기
 		
 		Line.sLine(50);
 		
@@ -170,13 +170,13 @@ public class testver4 {
 				// ☆★☆★ HIT 하면 출력될 곳 ★☆★☆
 				System.out.println("▶ 딜러의 카드 ◀");
 				System.out.println("┌─────┐┌─────┐");
-				System.out.printf("│%3s  ││%3s  │\n",dealerCard.get(0),dealerCard.get(1)); //테스트용 보여주기
-				//System.out.printf("│%3s  │\t│%3s  │\n",dealerCard.get(0),"??"); //실전용 안보여주기
+				//System.out.printf("│%3s  ││%3s  │\n",dealerCard.get(0),dealerCard.get(1)); //테스트용 보여주기
+				System.out.printf("│%3s  ││%3s  │\n",dealerCard.get(0),"??"); //실전용 안보여주기
 				System.out.println("└─────┘└─────┘");
 				dealerscore = cardscore[0]; //카드번호에 맞는 점수 주기
 				dealerscore += cardscore[1];
-			//	System.out.println("딜러의 현재점수 : "+"???"); //실전용 안보여주기
-				System.out.println("딜러의 현재점수 : "+dealerscore); //테스트용 점수보여주기
+				System.out.println("딜러의 현재점수 : "+"???"); //실전용 안보여주기
+				//System.out.println("딜러의 현재점수 : "+dealerscore); //테스트용 점수보여주기
 				
 				Line.sLine(50);
 				System.out.println("▶ 당신의 카드 ◀");
@@ -195,7 +195,7 @@ public class testver4 {
 				System.out.println(); //줄바꿈				
 				System.out.println("당신의 현재점수 : "+playerscore);
 				
-				psize++; //플레이어의 총카드 장수 증가
+				//psize++; //플레이어의 총카드 장수 증가// 근데 생각해보니까 .. 어차피 사이즈는 알아서 늘어나잖아? 지우자
 				
 				//----------------------------------------------------
 				
@@ -226,6 +226,7 @@ public class testver4 {
 		}// end for
 		
 		// 마지막에 카드를 보여줄려면??
+				System.out.println("▶ 딜러의 카드 ◀");
 				int dsize = dealerCard.size(); // 딜러가 가진 카드를 전부 보여주도록 한다
 				for (int i_temp = 0; i_temp<dsize ; i_temp++) { 
 					cardviewer1();
@@ -242,7 +243,7 @@ public class testver4 {
 		
 		//--------------------------------------------
 				int psize = playerCard.size();  //psize 또쓰이니 나중에 위에따로 선언해두기
-				
+				System.out.println("▶ 당신의 카드 ◀");
 				for (int i_temp = 0; i_temp < psize; i_temp++) {      //STOP시에 양쪽카드 다보여줄 때를 생각하면.. 선언은 위에 하는게 좋을듯?
 					cardviewer1();
 			
@@ -257,7 +258,7 @@ public class testver4 {
 				} 
 				System.out.println(); //줄바꿈				
 				System.out.println("당신의 현재점수 : "+playerscore);
-				
+				Line.sLine(50);
 				
 		
 		
@@ -274,7 +275,7 @@ public class testver4 {
 		
 		
 		
-		//하지만 카드 숫자의 합이 21을 초과하게 되는 순간 '버스트'라고 하며 
+		//카드 숫자의 합이 21을 초과하게 되는 순간 '버스트'라고 하며 
 		//딜러의 결과에 관계없이 플레이어가 패배한다. -나무위키
 		
 		//그럼 딜러는 계속 숨기고 있다가 플레이어의 stand(stop)시점에 ..
@@ -303,6 +304,9 @@ public class testver4 {
 		if(playerscore>21) {
 			System.out.println("BUST! 21점이 넘었습니다");
 			System.out.println("당신의 패배입니다..");
+		}else if(dealerscore>21) { 
+			System.out.println("딜러 BUST!");
+			System.out.println("당신의 승리입니다!");
 		}
 		//------------------------
 		else if(dealerscore == playerscore ) {
@@ -312,7 +316,7 @@ public class testver4 {
 			System.out.println("당신의 승리입니다!");
 		}
 		else if(endScoreD > endScoreP) { //숫자가 크면 진거
-			System.out.println("☆★당신이 블랙잭에서 승리했습니다!!★☆");
+			System.out.println("당신의 승리입니다!");
 		}else if (endScoreD < endScoreP) {
 			System.out.println("당신의 패배입니다..");
 		}
@@ -328,11 +332,11 @@ public class testver4 {
 		//■stop시에 점수공개 및 승패판정
 		//■21점에 가까운 쪽의 승리
 			
-		// ㅁ21점 넘으면 무조건 패배
-		//ㅁ한게임이 끝나면 카드 리스트는 초기화 (골든키 때처럼 처음으로가게 하면될듯?)
+		// ■21점 넘으면 무조건 패배
+		//■한게임이 끝나면 카드 리스트는 초기화 (골든키 때처럼 처음으로가게 하면될듯?)
 		
 		
-		// 버그!!!!!! 플레이어가 21안넘은 상태에서 STOP하고 딜러가 21이넘어도 패배로 처리안됨 이거추가!!
+		// 완성! 끝!
 		
 		
 		

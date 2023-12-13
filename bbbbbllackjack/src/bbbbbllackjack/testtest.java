@@ -63,7 +63,7 @@ public class testtest {
 		} 
 		
 		//----------------------------
-		// 승패판정 해결용
+		// 승패판정 점검용
 		Scanner scan = new Scanner(System.in);
 		int score1 = 30;
 		
