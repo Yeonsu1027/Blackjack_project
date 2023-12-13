@@ -83,7 +83,7 @@ public class GameBlackjack {
 		playerscore += cardscore[3];
 		System.out.println("당신의 현재점수 : "+playerscore);
 		
-		//딜러카드먼저 뽑아두기-----------------------------------------------------------
+		
 		
 		
 

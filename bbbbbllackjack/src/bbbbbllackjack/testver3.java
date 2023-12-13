@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 import utils.Line;
 
-public class testver2 {
+public class testver3 {
 
 	
 
@@ -17,7 +17,7 @@ public class testver2 {
 		Scanner scan = new Scanner(System.in);
 		
 		
-		// 점수계산용
+		// 승패를 가를 점수계산용
 		int endScoreD =0;
 		int endScoreP =0;
 		
@@ -70,10 +70,10 @@ public class testver2 {
 		//처음 카드 두장씩
 		//-----------------------------------------------------------
 		System.out.println("▶ 딜러의 카드 ◀");
-		System.out.println("┌─────┐\t┌─────┐");
-		System.out.printf("│%3s  │\t│%3s  │\n",dealerCard.get(0),dealerCard.get(1)); //테스트용 보여주기
+		System.out.println("┌─────┐┌─────┐");
+		System.out.printf("│%3s  ││%3s  │\n",dealerCard.get(0),dealerCard.get(1)); //테스트용 보여주기
 		//System.out.printf("│%3s  │\t│%3s  │\n",dealerCard.get(0),"??"); //실전용 안보여주기
-		System.out.println("└─────┘\t└─────┘");
+		System.out.println("└─────┘└─────┘");
 		dealerscore = cardscore[0]; //카드번호에 맞는 점수 주기
 		dealerscore += cardscore[1];
 	//	System.out.println("딜러의 현재점수 : "+"???"); //실전용 안보여주기
@@ -82,9 +82,9 @@ public class testver2 {
 		Line.sLine(50);
 		
 		System.out.println("▶ 당신의 카드 ◀");
-		System.out.println("┌─────┐\t┌─────┐");
-		System.out.printf("│%3s  │\t│%3s  │\n",playerCard.get(0),playerCard.get(1));
-		System.out.println("└─────┘\t└─────┘");
+		System.out.println("┌─────┐┌─────┐");
+		System.out.printf("│%3s  ││%3s  │\n",playerCard.get(0),playerCard.get(1));
+		System.out.println("└─────┘└─────┘");
 		playerscore = cardscore[2]; //카드번호에 맞는 점수 주기
 		playerscore += cardscore[3];
 		System.out.println("당신의 현재점수 : "+playerscore);
@@ -127,9 +127,10 @@ public class testver2 {
 		
 		Line.sLine(50);
 		
-		int playerHitCard =2;// 히트 회수당 playerCard.get(0) get 요소추가
+		int playerHitCard = 2;// 히트 회수당 playerCard.get(0) get 요소추가
 		int playerCardNum = 13; // 12까지 딜러꺼고 플레이어거 13부터시작
 		
+		//boolean result = true;
 		while(true) {
 			System.out.println("HIT or STOP ???");
 			String str = scan.nextLine(); 
@@ -141,28 +142,66 @@ public class testver2 {
 //				} catch (Exception e) {
 //				System.out.println("HIT 나 STOP 만 입력가능합니다");
 //			}
-			System.out.println("▶ 당신의 카드 ◀");
+		//근데 이거 안해도 될거같은데 어차피 입력받는게 저거 두개가 다여서	
+			//다른건 입력해도 반응안함
+		
 			
-			if(str.equals("HIT")) { 						
+			
+			//-----------------------------------------------
+			if(str.equals("HIT")) { 	
 				
-				//if(playerscore>21){ break; } // hit 하다가 21점 넘겨버리면 즉시 점수판정으로 넘어가서 패배처리.
-			
 				playerCard.add(carddeck[playerCardNum]); // 플레이어 카드목록 에 13번째 카드부터 1장추가
 				playerscore += cardscore[playerCardNum]; // 점수도추가
 				
+				if(playerscore>21) { break;//result = false; // hit 하다가 21점 넘겨버리면 즉시 점수판정으로 넘어가서 패배처리.
+				}else if(playerscore == 21) break;//result = false; // 딱 21점이면 바로 점수판정 으로 보내서 승리or비기기
+				
+				
 				
 				//cardviewer1();
-				cardviewer2(playerCard.get(playerHitCard)); //새로받는 카드는 플레이어 리스트의 요소 2부터 (이미있는 카드 0,1)
+				//cardviewer2(playerCard.get(playerHitCard)); //새로받는 카드는 플레이어 리스트의 요소 2부터 (이미있는 카드 0,1)
 				//cardviewer3();
-				System.out.println("당신의 현재 점수 : "+playerscore);
+				//System.out.println("당신의 현재 점수 : "+playerscore);
 				
 				playerCardNum++;  // hit 할 시마다 한 장씩추가 13++
 				playerHitCard++; //hit 으로 새로받은, 플레이어의 카드 번호
 				
 				
 				//test
-				System.out.println(playerCardNum);
-				System.out.println(playerHitCard);
+				//System.out.println(playerCardNum);
+				//System.out.println(playerHitCard);
+				
+				// ☆★☆★ HIT 하면 출력될 곳 ★☆★☆
+				System.out.println("▶ 딜러의 카드 ◀");
+				System.out.println("┌─────┐┌─────┐");
+				System.out.printf("│%3s  ││%3s  │\n",dealerCard.get(0),dealerCard.get(1)); //테스트용 보여주기
+				//System.out.printf("│%3s  │\t│%3s  │\n",dealerCard.get(0),"??"); //실전용 안보여주기
+				System.out.println("└─────┘└─────┘");
+				dealerscore = cardscore[0]; //카드번호에 맞는 점수 주기
+				dealerscore += cardscore[1];
+			//	System.out.println("딜러의 현재점수 : "+"???"); //실전용 안보여주기
+				System.out.println("딜러의 현재점수 : "+dealerscore); //테스트용 점수보여주기
+				
+				Line.sLine(50);
+				System.out.println("▶ 당신의 카드 ◀");
+				//----------------처음2장의 카드와 HIT한 카드를 추가로보여주는곳--
+				int psize = playerCard.size();  // HIT로 추가된 player 의 총 카드 장수만큼
+				
+				for (int i_temp = 0; i_temp < psize; i_temp++) {      //STOP시에 양쪽카드 다보여줄 때를 생각하면.. 선언은 위에 하는게 좋을듯?
+					cardviewer1();
+				} System.out.println();
+				for (int i_temp = 0; i_temp < psize; i_temp++) {
+					cardviewer2(playerCard.get(i_temp)); 
+				} System.out.println();
+				for (int i_temp = 0; i_temp < psize; i_temp++) {
+					cardviewer3();
+				} 
+				System.out.println(); //줄바꿈				
+				System.out.println("당신의 현재점수 : "+playerscore);
+				
+				psize++; //플레이어의 총카드 장수 증가
+				
+				//----------------------------------------------------
 				
 			
 				
@@ -170,10 +209,15 @@ public class testver2 {
 				
 				
 				
+				
+				
+				
+				
+				
 			} else if (str.equals("STOP")) {
 				break; //while 밖으로.
 			}
-		}// end while 점수계산
+		}// end while 점수계산 시작
 		
 		//---------------------------------------
 		
@@ -197,6 +241,22 @@ public class testver2 {
 		
 		//그럼 딜러는 계속 숨기고 있다가 플레이어의 stand(stop)시점에 ..
 		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		//승리판별 "STOP을 입력했을시"-----------------------------------------------
 		// 가까운쪽이승리// 21-점수해서 숫자가 낮은쪽의 승리 
 		endScoreD = 21 - dealerscore;
@@ -207,8 +267,11 @@ public class testver2 {
 			System.out.println("당신의 패배입니다..");
 		}
 		//------------------------
-		if(dealerscore == playerscore ) {
+		else if(dealerscore == playerscore ) {
 			System.out.println("비겼습니다!");
+		} else if (playerscore == 21) {   //비겼는지 먼저 판별하고 21점 블랙잭승리 판별
+			System.out.println("★ BlackJack! ★");
+			System.out.println("당신의 승리입니다!");
 		}
 		else if(endScoreD > endScoreP) { //숫자가 크면 진거
 			System.out.println("☆★당신이 블랙잭에서 승리했습니다!!★☆");
@@ -220,17 +283,25 @@ public class testver2 {
 		
 		
 		//앞으로 해야할 것
-		// 21 넘으면 자동패배
+		// ■21 넘으면 자동패배
 				
 		
-				//플레이어에게 카드를 또 받을Hit 할 것인지 그만둘 STOP것인지
-		//선택할 수 있게 만든다
-		//stop시에 점수공개 및 승패판정
-		//21점에 가까운 쪽의 승리
+		// ■플레이어에게 카드를 또 받을Hit 할 것인지 그만둘 STOP것인지 선택지주기
+		//■stop시에 점수공개 및 승패판정
+		//■21점에 가까운 쪽의 승리
+			
+		// ㅁ21점 넘으면 무조건 패배
+		//ㅁ한게임이 끝나면 카드 리스트는 초기화 (골든키 때처럼 처음으로가게 하면될듯?)
 		
-		//처음받은 두 점수의 합이 둘다 21로 동점 블랙잭이면 무승부 처리
-		// 21점 넘으면 무조건 패배
-		//한게임이 끝나면 카드 리스트는 초기화 (골든키 때처럼 처음으로가게 하면될듯?)
+		
+		
+		
+		// 현재 코드의 문제점 : break; 에서 바로 승패판정으로 보내고 싶은데 입력을 한번더해야 넘어감
+		// 해결했음. /점수 누적과 종료의 판별위치를 바꿨음..
+		
+		
+		// 그렇게 새로운 문제가 발생..
+		// 21점이 넘으면 뭐나왔는지도 안보여준다.. 는 어차피 마지막에 전부 보여줄건데 그때 다시띄워주면되나?
 		
 		
 		
@@ -239,22 +310,23 @@ public class testver2 {
 
 	}// end main
 	
+	// 추가로 보여줄 카드출력용
 	public static void cardviewer1() {
 		System.out.print("┌─────┐");
 	}
-	public static void cardviewer2(String card) {
-		System.out.printf("│%3s  │\n",card);//,매개변수
+	public static void cardviewer2(String pcard) {
+		System.out.printf("│%3s  │",pcard);//,매개변수
 	}
 	public static void cardviewer3() {
-		System.out.println("└─────┘");
+		System.out.print("└─────┘");
 	}
 	
-	// 추가로 보여줄 카드출력용
-	public static void cardviewer() { //(매개변수=카드번호)
-		System.out.println("┌─────┐");
-		System.out.printf("│%3s  │");//,매개변수
-		System.out.println("└─────┘");
-	}
+	
+//	public static void cardviewer() { //(매개변수=카드번호)
+//		System.out.print("┌─────┐");
+//		System.out.printf("│%3s  │");//,매개변수
+//		System.out.print("└─────┘");
+//	}
 	
 
 }
