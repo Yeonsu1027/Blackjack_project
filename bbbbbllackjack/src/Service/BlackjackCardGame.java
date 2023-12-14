@@ -23,10 +23,10 @@ public class BlackjackCardGame {
 		int deckcount = 0;
 		// ------------------------------------------------
 
-		String[] carddeck = { "♣A", "♣2", "♣3", "♣4", "♣5", "♣6", "♣7", "♣8", "♣9", "♣10", "♣J", "♣Q", "♣K", "♥A", "♥2",
-				"♥3", "♥4", "♥5", "♥6", "♥7", "♥8", "♥9", "♥10", "♥J", "♥Q", "♥K", "♠A", "♠2", "♠3", "♠4", "♠5", "♠6",
-				"♠7", "♠8", "♠9", "♠10", "♠J", "♠Q", "♠K", "◆A", "◆2", "◆3", "◆4", "◆5", "◆6", "◆7", "◆8", "◆9", "◆10",
-				"◆J", "◆Q", "◆K" };
+		String[] carddeck = { "♣A", "♣2", "♣3", "♣4", "♣5", "♣6", "♣7", "♣8", "♣9", "♣10", "♣J", "♣Q", "♣K"
+				, "♥A", "♥2", "♥3", "♥4", "♥5", "♥6", "♥7", "♥8", "♥9", "♥10", "♥J", "♥Q", "♥K"
+				, "♠A", "♠2", "♠3", "♠4", "♠5", "♠6", "♠7", "♠8", "♠9", "♠10", "♠J", "♠Q", "♠K"
+				, "◆A", "◆2", "◆3", "◆4", "◆5", "◆6", "◆7", "◆8", "◆9", "◆10", "◆J", "◆Q", "◆K" };
 
 		int[] cardscore = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10
 						, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10
@@ -71,8 +71,8 @@ public class BlackjackCardGame {
 
 			} else if (str.equals("QUIT")) {
 				break;
-			} else if (str.equals("START"))
-				;
+			} else if (str.equals("START"));
+				
 
 			List<String> dealerCard = new ArrayList<>();
 			List<String> playerCard = new ArrayList<>();
@@ -170,7 +170,7 @@ public class BlackjackCardGame {
 					continue;
 
 				} else if (str.equals("STOP")) {
-					break; // while 밖으로.
+					break; 
 				}
 			} // end while
 
@@ -265,7 +265,8 @@ public class BlackjackCardGame {
 		System.out.println("BUST(21점초과)시 딜러의 패와 관계없이");
 		System.out.println("당신의 패배입니다");
 		Line.sLine(50);
-		System.out.println("게임시작 및 재시작 : START");
+		System.out.println("게임시작 : START");
+		System.out.println("게임재시작 : RESTART");
 		System.out.println("게임종료 : QUIT");
 		Line.dLine(50);
 	}
