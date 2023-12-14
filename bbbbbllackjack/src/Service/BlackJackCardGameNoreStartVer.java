@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 import utils.Line;
 
-public class BlackJackCardGame {
+public class BlackJackCardGameNoreStartVer {
 	//카드 숫자의 합이 21을 초과하게 되는 순간 '버스트'라고 하며 
 			//딜러의 결과에 관계없이 플레이어가 패배한다. -나무위키
 	
