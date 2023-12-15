@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 import utils.Line;
 
-public class BlackjackCardGame {
+public class BlackjackCardGame3 {
 	// 카드 숫자의 합이 21을 초과하게 되는 순간 '버스트'라고 하며
 	// 딜러의 결과에 관계없이 플레이어가 패배한다. -나무위키
 
@@ -40,14 +40,23 @@ public class BlackjackCardGame {
 		String temp = null;
 		int temp2 = 0;
 		Random random = new Random();
-		
+		for (int i = carddeck.length - 1; i > 0; i--) {
+			int j = random.nextInt(i + 1);
+			temp = carddeck[i];
+			carddeck[i] = carddeck[j];
+			carddeck[j] = temp;
+
+			temp2 = cardscore[i];
+			cardscore[i] = cardscore[j];
+			cardscore[j] = temp2;
+		}
 
 		inform();
 
 		while (true) {
 			str = scan.nextLine();
 
-			if (str.equals("START")) {
+			if (str.equals("RESTART")) {
 
 				random = new Random();
 				for (int i = carddeck.length - 1; i > 0; i--) {
@@ -61,9 +70,9 @@ public class BlackjackCardGame {
 					cardscore[j] = temp2;
 				}
 
-			} else if (str.equals("QUIT")) break;
-				
-			
+			} else if (str.equals("QUIT")) {
+				break;
+			} else if (str.equals("START"));
 				
 
 			List<String> dealerCard = new ArrayList<>();
@@ -258,7 +267,8 @@ public class BlackjackCardGame {
 		System.out.println("BUST(21점초과)시 딜러의 패와 관계없이");
 		System.out.println("당신의 패배입니다");
 		Line.sLine(50);
-		System.out.println("게임시작 및 재시작 : START");
+		System.out.println("게임시작 : START");
+		System.out.println("게임재시작 : RESTART");
 		System.out.println("게임종료 : QUIT");
 		Line.dLine(50);
 	}
